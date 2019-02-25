@@ -2,7 +2,7 @@ package first_work;
 
 import java.util.Scanner;
 
-public class lets_do_it {
+public class LetsDoIt {
     public static void main(String[] args) {
         int first_oper = 8119%2;
         int constant= 8119%3;
