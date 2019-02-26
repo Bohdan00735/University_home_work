@@ -101,13 +101,14 @@ public class MyFloatMatrix {
     float calcSumOfLowestElemInRows(){
         float sum = 0;
         for (int i = 0; i < thisRows; i ++ ){
-            float min = 10000;
+            float min = thisMatrix[i][0];
             for (int j = 0; j < thisColumn; j ++){
                 if (thisMatrix[i][j]< min){
                     min = thisMatrix[i][j];
                 }
             }
             sum+=min;
-        }return sum;
+        }
+        return sum;
     }
 }

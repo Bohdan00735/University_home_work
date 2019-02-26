@@ -13,6 +13,9 @@ public class another_small_tests {
         thesis.start();
         int dd = thesis.change;
         dd = thesis.calc(25);
+
+        int [][] n;
+
     }
 
 

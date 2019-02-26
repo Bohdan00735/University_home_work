@@ -26,7 +26,7 @@ public class LetsDoIt {
             j = check_for_input("j", scanner);
             n = check_for_input("n", scanner);
             m = check_for_input("m", scanner);
-            if (i<n && j < m){
+            if (i <= n && j <= m){
                 break;
             }else {
                 System.out.println("i and j must be lower than n,m");
@@ -56,8 +56,8 @@ public class LetsDoIt {
             System.out.println("there will be / by zero");
             System.exit(1);
         }else{
-            for (i = i; i < n;i++){
-                for (j = j;j < m;j++){
+            for (i = i; i <= n;i++){
+                for (j = j;j <= m;j++){
                     result += (i-j)/(i-constant);
 
                 }
