@@ -14,7 +14,7 @@ public class WorkWithLine {
         int localLast;
         String localSymb;
 
-        for (int i = 0; i < line.length()/2; i++){
+        for (int i = 0; i < line.length(); i++){
             if (line.length()- i < lastSymbol-startSymb ){
                 break;
             }else {
