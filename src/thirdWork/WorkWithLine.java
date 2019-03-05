@@ -10,9 +10,11 @@ public class WorkWithLine {
         line.append(scanner.nextLine());
         int startSymb = -1;
         int lastSymbol = -1;
-        String symbol="";
+        String symbol=scanner.next();
         int localLast;
         String localSymb;
+
+
 
         for (int i = 0; i < line.length(); i++){
             if (line.length()- i < lastSymbol-startSymb ){
