@@ -13,13 +13,13 @@ public class anotherVar10 {
         String [] sentenses = String.valueOf(text).split("\\.");
         StringBuilder splitedText = new StringBuilder();
 
-        for (int i = 0; i < sentenses.length; i++){
+        for (String i:sentenses){
             int prevLenght = splitedText.length();
-            int start = sentenses[i].indexOf(symb);
-            int last = sentenses[i].lastIndexOf(symb);
-            splitedText.append(sentenses[i]);
+            int start = i.indexOf(symb);
+            int last = i.lastIndexOf(symb);
+            splitedText.append(i);
             splitedText.append(".");
-            splitedText.delete(start + prevLenght, last + prevLenght);
+            splitedText.delete(start + prevLenght, last + prevLenght+1);
         }
 
         System.out.println("new line is : \n" + splitedText.toString());

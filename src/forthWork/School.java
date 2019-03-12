@@ -1,6 +1,5 @@
 package forthWork;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -33,7 +32,7 @@ class SortByNum implements Comparator<School>{
 
 class SortByPupils implements Comparator<School>{
     public int compare(School schoola, School schoolb){
-        return schoolb.numOfpupil - schoola.numOfpupil;
+        return schoola.numOfpupil - schoolb.numOfpupil;
     }
 }
 
@@ -61,7 +60,7 @@ class Main{
             System.out.println(i);
         }
 
-        Arrays.sort(schools, new SortByPupils());
+        Arrays.sort(schools, new SortByPupils().reversed());
 
         System.out.println("sorted array by num of pupils in reversed order : \n");
 
