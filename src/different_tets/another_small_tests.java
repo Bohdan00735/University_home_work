@@ -16,6 +16,16 @@ public class another_small_tests {
 
         int [][] n;
 
+        int [] w = {1,2,3,4,5,6,7};
+        int []q = new int[4];
+        System.arraycopy(w,0,q,0,3);
+        System.arraycopy(w,6,q,3,1);
+        System.out.println("ttt");
+
+        for (int i : q){
+            System.out.println(i);
+        }
+
     }
 
 
