@@ -15,34 +15,34 @@ public class workWithSintaxis {
         String symbol = scanner.next();
 
         Text splitedText = new Text();
-        String [] spl;
+        String[] spl;
 
         Pattern pattern = Pattern.compile("((?<=[^A-Za-z]) [.!?]) + (?=[A-Za-z])");
         spl = text.split("\\.");
-        for (String s:spl){
+        for (String s : spl) {
             System.out.println(s);
         }
         splitedText.setText(new Sentense[spl.length]);
 
-        for (int sentense = 0; sentense < spl.length; sentense++){
-            String [] parts = spl[sentense].split(" ");
+        for (int sentense = 0; sentense < spl.length; sentense++) {
+            String[] parts = spl[sentense].split(" ");
             Sentense thiseSentence = new Sentense(parts.length);
-            for (String part: parts){
-                if (part.length()==1){
+            for (String part : parts) {
+                if (part.length() == 1) {
                     char element = part.charAt(0);
-                    int ascii = (int)element;
-                    if (ascii <= 64 & (33 <= ascii)){
-                         SectionSign sectionSign = new SectionSign(part);
-                         thiseSentence.addToSentense(sectionSign);
-                    }else {
+                    int ascii = (int) element;
+                    if (ascii <= 64 & (33 <= ascii)) {
+                        SectionSign sectionSign = new SectionSign(part);
+                        thiseSentence.addToSentense(sectionSign);
+                    } else {
                         Word theseWord = new Word();
                         theseWord.addToWord(new Letter(part));
                         thiseSentence.addToSentense(theseWord);
                     }
-                }else {
-                    String [] word = part.split("");
+                } else {
+                    String[] word = part.split("");
                     Word theseWord = new Word();
-                    for (String letter: word){
+                    for (String letter : word) {
                         theseWord.addToWord(new Letter(letter));
                     }
                     thiseSentence.addToSentense(theseWord);
@@ -56,29 +56,29 @@ public class workWithSintaxis {
     }
 }
 
-class Text{
+class Text {
     private Sentense[] text;
-    private  int counter;
+    private int counter;
 
     public void setText(Sentense[] text) {
         this.text = text;
     }
 
-    boolean addElemenet(Sentense sentense){
-        if (this.counter <= this.text.length){
+    boolean addElemenet(Sentense sentense) {
+        if (this.counter <= this.text.length) {
             this.text[counter] = sentense;
             this.counter++;
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
-    int [] findFromStart(String symb){
-        int [] lastPosition = new int[3];
-        for(int j = 0;j < text.length; j++){
-            int [] sentPosition = this.text[j].firstIn(symb);
-            if (sentPosition[0] != -1){
+    int[] findFromStart(String symb) {
+        int[] lastPosition = new int[3];
+        for (int j = 0; j < text.length; j++) {
+            int[] sentPosition = this.text[j].firstIn(symb);
+            if (sentPosition[0] != -1) {
                 lastPosition[0] = j;
                 lastPosition[1] = sentPosition[0];
                 lastPosition[2] = sentPosition[1];
@@ -89,11 +89,11 @@ class Text{
         return lastPosition;
     }
 
-    int [] findFromEnd(String symb){
-        int [] lastPosition = new int[3];
-        for(int j = this.text.length-1;j > 0; j--){
-            int [] sentPosition = this.text[j].lastIn(symb);
-            if (sentPosition[0] != -1){
+    int[] findFromEnd(String symb) {
+        int[] lastPosition = new int[3];
+        for (int j = this.text.length - 1; j > 0; j--) {
+            int[] sentPosition = this.text[j].lastIn(symb);
+            if (sentPosition[0] != -1) {
                 lastPosition[0] = j;
                 lastPosition[1] = sentPosition[0];
                 lastPosition[2] = sentPosition[1];
@@ -104,14 +104,14 @@ class Text{
         return lastPosition;
     }
 
-    void cutSomePartInEachSentence(String symbol){
-        for (int i = 0; i < text.length; i++){
+    void cutSomePartInEachSentence(String symbol) {
+        for (int i = 0; i < text.length; i++) {
             this.text[i].cutFromDIapOfSymb(symbol);
         }
     }
 
-    void PrintText(){
-        for (Sentense sentense: text){
+    void PrintText() {
+        for (Sentense sentense : text) {
             sentense.printSentense();
         }
     }
@@ -120,28 +120,29 @@ class Text{
 
 
 class Sentense {
-    PartOfSentence [] sentense;
+    PartOfSentence[] sentense;
     int counter = 0;
 
-    Sentense(int length){
+    Sentense(int length) {
         sentense = new PartOfSentence[length];
     }
 
     public boolean addToSentense(PartOfSentence partOfSentence) {
-        if (counter <= sentense.length){
+        if (counter <= sentense.length) {
             sentense[counter] = partOfSentence;
             counter++;
             return true;
-        }return false;
+        }
+        return false;
     }
 
-    int[] firstIn(String symb){
-        int [] res = new int[2];
+    int[] firstIn(String symb) {
+        int[] res = new int[2];
         int position = -1;
         //printSentense();
-        for (int i = 0; i < sentense.length; i++){
+        for (int i = 0; i < sentense.length; i++) {
             position = this.sentense[i].findFirst(symb);
-            if (position != -1){
+            if (position != -1) {
                 res[0] = i;
                 res[1] = position;
                 return res;
@@ -151,11 +152,11 @@ class Sentense {
         return res;
     }
 
-    int [] lastIn(String symb){
-        int [] res = new int[2];
-        for (int i = this.sentense.length-1; i > 0; i--){
+    int[] lastIn(String symb) {
+        int[] res = new int[2];
+        for (int i = this.sentense.length - 1; i > 0; i--) {
             int position = this.sentense[i].findLast(symb);
-            if (position != -1){
+            if (position != -1) {
                 res[0] = i;
                 res[1] = position;
                 return res;
@@ -169,51 +170,50 @@ class Sentense {
         this.sentense = sentense;
     }
 
-    void cutFromDIapOfSymb(String symbol){
+    void cutFromDIapOfSymb(String symbol) {
         int[] start = firstIn(symbol);
         int[] end = lastIn(symbol);
-        if (start[0]==end[0] & start[1]==end[1]){
+        if (start[0] == end[0] & start[1] == end[1]) {
             sentense[start[0]].deleteOneLetter(start[1]);
-        }
-        else if (start[0] == end[0]){
+        } else if (start[0] == end[0]) {
             sentense[start[0]].deleteFromDiapason(start[1], end[1]);
 
-        }else if (start[1] == -1 || end[1] == -1){
+        } else if (start[1] == -1 || end[1] == -1) {
 
-        }else{
-            PartOfSentence [] newSentance = new PartOfSentence[start[0]+ sentense.length - end[0]+1];
+        } else {
+            PartOfSentence[] newSentance = new PartOfSentence[start[0] + sentense.length - end[0] + 1];
             System.arraycopy(this.sentense, 0, newSentance, 0, start[0]);
             Word firstPart = new Word();
             firstPart.setWord(sentense[start[0]].returnToPoint(start[1]));
-            newSentance [start[0]] = firstPart;
+            newSentance[start[0]] = firstPart;
 
             Word lastPart = new Word();
             lastPart.setWord(sentense[end[0]].returnfromPointToEnd(end[1]));
-            newSentance [start[0] + 1] = lastPart;
+            newSentance[start[0] + 1] = lastPart;
 
-            System.arraycopy(this.sentense, end[0], newSentance,start[0]+1, sentense.length - end[0]);
+            System.arraycopy(this.sentense, end[0], newSentance, start[0] + 1, sentense.length - end[0]);
 
             this.sentense = newSentance;
         }
     }
 
-    void printSentense (){
-        for (PartOfSentence part:this.sentense) {
+    void printSentense() {
+        for (PartOfSentence part : this.sentense) {
             part.printThis();
         }
     }
 
 }
 
-class Word implements PartOfSentence{
-    List<Letter>word = new ArrayList<Letter>();
+class Word implements PartOfSentence {
+    List<Letter> word = new ArrayList<Letter>();
     int counter = 0;
 
     public void setWord(List<Letter> word) {
         this.word = word;
     }
 
-    void addToWord(Letter letter){
+    void addToWord(Letter letter) {
         word.add(letter);
     }
 
@@ -226,9 +226,9 @@ class Word implements PartOfSentence{
         return 0;
     }
 
-    public int findFirst(String symb){
-        for (int i = 0; i < word.size(); i++){
-            if(word.get(i).compare(symb)){
+    public int findFirst(String symb) {
+        for (int i = 0; i < word.size(); i++) {
+            if (word.get(i).compare(symb)) {
                 return i;
             }
         }
@@ -236,43 +236,43 @@ class Word implements PartOfSentence{
     }
 
 
-    public int findLast(String symb){
-        for (int i = word.size()-1; i > 0; i--){
-            if(word.get(i).compare(symb)){
+    public int findLast(String symb) {
+        for (int i = word.size() - 1; i > 0; i--) {
+            if (word.get(i).compare(symb)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public void deleteOneLetter(int index){
+    public void deleteOneLetter(int index) {
         word.remove(index);
     }
 
-    public void deleteFromDiapason(int start, int end){
+    public void deleteFromDiapason(int start, int end) {
         List<Letter> newWord = new ArrayList<Letter>();
 
-        for (int i = 0; i < start-1; i++){
+        for (int i = 0; i < start - 1; i++) {
             newWord.add(i, word.get(i));
         }
 
-        for (int j = end; j < word.size(); j++){
+        for (int j = end; j < word.size(); j++) {
             newWord.add(word.get(j));
         }
         word = newWord;
     }
 
-    public List<Letter> returnToPoint(int point){
-        List<Letter> newWord =  new ArrayList<>();
-        for (int i  = 0; i < point;i++){
+    public List<Letter> returnToPoint(int point) {
+        List<Letter> newWord = new ArrayList<>();
+        for (int i = 0; i < point; i++) {
             newWord.add(i, word.get(i));
         }
         return newWord;
     }
 
-    public List<Letter> returnfromPointToEnd(int point){
-        List<Letter> newWord =  new ArrayList<>();
-        for (int i = point; i < this.word.size();i++){
+    public List<Letter> returnfromPointToEnd(int point) {
+        List<Letter> newWord = new ArrayList<>();
+        for (int i = point; i < this.word.size(); i++) {
             newWord.add(word.get(i));
         }
         word = newWord;
@@ -282,68 +282,77 @@ class Word implements PartOfSentence{
     @Override
     public void printThis() {
         System.out.print(" ");
-        for (Letter letter: this.word){
+        for (Letter letter : this.word) {
             letter.printLetter();
         }
     }
 }
 
-class Letter{
+class Letter {
     String marking;
     String transcription;
 
-    Letter(String mark){
+    Letter(String mark) {
         this.marking = mark;
     }
 
-    void printLetter(){
+    void printLetter() {
         System.out.print(marking);
     }
 
-    boolean compare(String symbol){
+    boolean compare(String symbol) {
         return symbol.equals(marking);
     }
 
 }
 
-interface PartOfSentence{
+interface PartOfSentence {
     char returnSymb();
+
     int findFirst(String symb);
+
     int findLast(String symb);
 
     void deleteFromDiapason(int start, int end);
+
     List<Letter> returnToPoint(int point);
+
     List<Letter> returnfromPointToEnd(int point);
+
     void printThis();
+
     void deleteOneLetter(int index);
 }
 
-class SectionSign implements PartOfSentence{
+class SectionSign implements PartOfSentence {
     String symb;
 
-    SectionSign(String mean){
+    SectionSign(String mean) {
         this.symb = mean;
     }
-    public List<Letter> returnfromPointToEnd(int point){
+
+    public List<Letter> returnfromPointToEnd(int point) {
         List<Letter> returnable = new ArrayList<Letter>();
         returnable.add(new Letter(" "));
         return returnable;
     }
 
-    public void deleteOneLetter(int index){}
+    public void deleteOneLetter(int index) {
+    }
 
     @Override
     public void printThis() {
         System.out.print(symb);
     }
 
-    public List<Letter> returnToPoint(int point){
+    public List<Letter> returnToPoint(int point) {
         List<Letter> returnable = new ArrayList<Letter>();
         returnable.add(new Letter(""));
         return returnable;
     }
 
-    public void deleteFromDiapason(int start, int end){}
+    public void deleteFromDiapason(int start, int end) {
+    }
 
     @Override
     public char returnSymb() {
@@ -352,13 +361,17 @@ class SectionSign implements PartOfSentence{
 
     @Override
     public int findFirst(String symb) {
-        if (this.symb.equals(symb)){return 0;}
+        if (this.symb.equals(symb)) {
+            return 0;
+        }
         return -1;
     }
 
     @Override
     public int findLast(String symb) {
-        if (this.symb.equals(symb)){return 0;}
+        if (this.symb.equals(symb)) {
+            return 0;
+        }
         return -1;
     }
 }

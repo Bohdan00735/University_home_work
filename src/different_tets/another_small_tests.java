@@ -15,6 +15,9 @@ public class another_small_tests {
         dd = thesis.calc(25);
 
         int [][] n;
+        System.out.println();
+
+        System.out.println((18+81%60)%30+1);
 
         int [] w = {1,2,3,4,5,6,7};
         int []q = new int[4];

@@ -1,7 +1,8 @@
 package sixthWork;
 
 public interface Truck {
-int calculateNumOfPassanger();
-int calculateNuOfLuggage();
+    int calculateNumOfPassanger();
+
+    int calculateNuOfLuggage();
 
 }
