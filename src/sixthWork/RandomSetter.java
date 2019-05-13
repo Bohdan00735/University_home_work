@@ -1,7 +1,7 @@
 package sixthWork;
 
 
-public class RandomSetter {
+class RandomSetter {
     Train makeNewPassengerTrain() {
         int numOfWagons = (int) Math.round(Math.random() * (40) + 10);
         int nummberOfTrain = (int) Math.round(Math.random() * (300) + 200);
@@ -16,23 +16,36 @@ public class RandomSetter {
             PlaceCarriageCar placeCarriageCar = new PlaceCarriageCar((int) Math.round(Math.random() * (300) + 200));
 
             for (int j = 0; j < (int) Math.round(Math.random() * (10) + 10); j++) {
-                sv.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
-                        (int) Math.round(Math.random() * (4)), (int) Math.round(Math.random() * (10) + 10));
+                if (sv.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
+                        (int) Math.round(Math.random() * (4)), (int) Math.round(Math.random() * (20))) == -1) {
+                    sv.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
+                            (int) Math.round(Math.random() * (4)), (int) Math.round(Math.random() * (20)));
+                }
             }
 
-            for (int j = 0; j < (int) Math.round(Math.random() * (50) + 10); j++) {
-                sittingCarriage.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
-                        (int) Math.round(Math.random()), (int) Math.round(Math.random() * (50) + 10));
+            for (int j = 0; j < (int) Math.round(Math.random() * (30) + 30); j++) {
+                if (sittingCarriage.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
+                        (int) Math.round(Math.random()), (int) Math.round(Math.random() * (60))) == -1) {
+                    sittingCarriage.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
+                            (int) Math.round(Math.random()), (int) Math.round(Math.random() * (60)));
+                }
             }
 
-            for (int j = 0; j < (int) Math.round(Math.random() * (30) + 10); j++) {
-                compartmentCarriage.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
-                        (int) Math.round(Math.random() * (3)), (int) Math.round(Math.random() * (30) + 10));
+            for (int j = 0; j < (int) Math.round(Math.random() * (20) + 20); j++) {
+                if (compartmentCarriage.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
+                        (int) Math.round(Math.random() * (3)), (int) Math.round(Math.random() * (40))) == -1) {
+                    compartmentCarriage.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
+                            (int) Math.round(Math.random() * (3)), (int) Math.round(Math.random() * (40)));
+                }
+
             }
 
-            for (int j = 0; j < (int) Math.round(Math.random() * (44) + 10); j++) {
-                placeCarriageCar.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
-                        (int) Math.round(Math.random() * (2)), (int) Math.round(Math.random() * (44) + 10));
+            for (int j = 0; j < (int) Math.round(Math.random() * (27) + 27); j++) {
+                if (placeCarriageCar.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
+                        (int) Math.round(Math.random() * (2)), (int) Math.round(Math.random() * (54))) == 1) {
+                    placeCarriageCar.addPassanger(" ", " ", (int) Math.round(Math.random() * (100) + 100),
+                            (int) Math.round(Math.random() * (2)), (int) Math.round(Math.random() * (54)));
+                }
             }
 
             if (!train.addInTheSpace(i, sv) |
