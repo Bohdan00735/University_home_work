@@ -1,8 +1,11 @@
 package sixthWork;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Train {
     int numOfWagons;
-    Truck [] wagons;
+    Carriage [] wagons;
     Tractor tractor;
     String director;
     int nummberOfTrain;
@@ -11,14 +14,14 @@ public class Train {
 
     public Train(int numOfWagons, Tractor tractor, String director, int nummberOfTrain, String route) {
         this.numOfWagons = numOfWagons;
-        this.wagons = new Truck[numOfWagons];
+        this.wagons = new Carriage[numOfWagons];
         this.tractor = tractor;
         this.director = director;
         this.nummberOfTrain = nummberOfTrain;
         this.route = route;
     }
 
-    boolean addInTheEndWagon(Truck truck){
+    boolean addInTheEndWagon(Carriage truck){
         if (spaceForWagon <= numOfWagons){
             wagons[spaceForWagon] = truck;
             spaceForWagon++;
@@ -26,7 +29,7 @@ public class Train {
         }return false;
     }
 
-    boolean addInTheSpace(int space, Truck truck){
+    boolean addInTheSpace(int space, Carriage truck){
         if (space >= numOfWagons) {
             return false;
         }wagons[space] = truck;
@@ -45,5 +48,34 @@ public class Train {
         for (Truck truck: wagons){
             result+=truck.calculateNuOfLuggage();
         }return result;
+    }
+
+    void sortByComfort(){
+        Arrays.sort(wagons, new SortByComfortable());
+        System.out.println("\n Wagons was sorted by comfortable");
+    }
+
+    void showInRowByNum(){
+        System.out.println("\n");
+        for (Carriage carriage:wagons){
+            System.out.printf("%d(%d), ",carriage.nummber, carriage.comfortable);
+        }
+    }
+
+    void findWagonInDiap(){
+        Scanner scanner = new Scanner(System.in);
+        Checker checker = new Checker();
+        int [] bounds = checker.checkForBound(scanner);
+        int calc = 0;
+        for (Carriage carriage: wagons){
+            int numOfPassenger = carriage.calculateNumOfPassanger();
+            if (numOfPassenger <=bounds[1] && numOfPassenger>= bounds[0]){
+                System.out.printf("\n %d Passengers(%d), ", carriage.nummber, numOfPassenger);
+                calc++;
+            }
+        }
+        if (calc == 0){
+            System.out.println("there is no wagon with passengers from set diapason");
+        }
     }
 }
