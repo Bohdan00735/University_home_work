@@ -3,7 +3,7 @@ package sixthWork;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Train {
+class Train {
     int numOfWagons;
     Carriage[] wagons;
     Tractor tractor;

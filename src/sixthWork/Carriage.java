@@ -8,13 +8,16 @@ public class Carriage implements Truck {
     int[] baggage;
     int nummber;
 
-    Carriage(int comfortable, int numOfSeats, int numOfLuggage, int nummber) {
+    public Carriage(int comfortable, int numOfSeats, int numOfLuggage, int nummber) {
         this.comfortable = comfortable;
         this.numOfSeats = numOfSeats;
         this.numOfLuggage = numOfLuggage;
         this.seats = new String[numOfSeats];
         this.baggage = new int[numOfSeats];
         this.nummber = nummber;
+    }
+
+    public Carriage() {
     }
 
     int addPassanger(String name, String surname, int numOfPassport, int luggage, int place) {
