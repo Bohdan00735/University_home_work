@@ -7,8 +7,6 @@ import java.util.Set;
 public class MySet implements Set<ICarriage> {
     private ICarriage startCarige;
 
-
-
     @Override
     public int size() {
         return startCarige.size();
@@ -26,6 +24,15 @@ public class MySet implements Set<ICarriage> {
 
     @Override
     public boolean contains(Object o) {
+        try {
+            if(startCarige.equals(o)){
+                return true;
+            }else {
+                return startCarige.CheakNext(o);
+            }
+        }catch (NullPointerException ex){
+            System.out.println("there isn`t any Objects");
+        }
         return false;
     }
 
@@ -36,11 +43,19 @@ public class MySet implements Set<ICarriage> {
 
     @Override
     public ICarriage[] toArray() {
-        return new ICarriage[0];
+        ICarriage[] iCarriages = new ICarriage[size()];
+        try {
+            iCarriages[0] = startCarige;
+        }catch (NullPointerException ex){
+            return iCarriages;
+
+        }
+        return startCarige.addToArray(iCarriages, 1);
     }
 
     @Override
     public <T> T[] toArray(T[] ts) {
+        
         return null;
     }
 
