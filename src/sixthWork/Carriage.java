@@ -6,7 +6,7 @@ public class Carriage implements Truck {
     int numOfLuggage;
     String[] seats;
     int[] baggage;
-    int nummber;
+    public  int nummber;
 
     public Carriage(int comfortable, int numOfSeats, int numOfLuggage, int nummber) {
         this.comfortable = comfortable;

@@ -2,6 +2,10 @@ package seventhWork;
 
 import sixthWork.Carriage;
 
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Objects;
+
 public class ICarriage extends Carriage {
 ICarriage nextICariage;
 
@@ -43,4 +47,28 @@ ICarriage nextICariage;
         }return iCarriages;
     }
 
+    boolean haveNext(){
+        try {
+            if (!nextICariage.equals(null)){
+                return true;
+            }
+        }catch (NullPointerException e){}return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ICarriage iCarriage = (ICarriage) o;
+        return Objects.equals(nextICariage, iCarriage.nextICariage);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nextICariage);
+    }
+
+    void f(HashMap map, int size){
+        map.put(size()- size, this);
+    }
 }
