@@ -1,6 +1,8 @@
 package sixthWork;
 
-public class Carriage implements Truck {
+import seventhWork.ICarriage;
+
+public class Carriage implements Truck  {
     int comfortable;
     int numOfSeats;
     int numOfLuggage;
@@ -20,7 +22,7 @@ public class Carriage implements Truck {
     public Carriage() {
     }
 
-    int addPassanger(String name, String surname, int numOfPassport, int luggage, int place) {
+    public int addPassanger(String name, String surname, int numOfPassport, int luggage, int place) {
         try {
             try {
                 seats[place].equals(" ");

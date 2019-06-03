@@ -13,7 +13,10 @@ public class MySet implements Set<ICarriage> {
 
     @Override
     public int size() {
-        return head.size();
+        try{return head.size();
+        }catch (NullPointerException e){
+            return 0;
+        }
     }
 
     @Override
@@ -52,15 +55,16 @@ public class MySet implements Set<ICarriage> {
             @Override
             public ICarriage next() throws IndexOutOfBoundsException{
                 if (!current.haveNext()) throw new IndexOutOfBoundsException("End of set.");
+                ICarriage returnable = current;
                 current = current.nextICariage;
-                return current;
+                return returnable;
             }
         };
     }
 
     @Override
     public ICarriage[] toArray() {
-        ICarriage[] iCarriages = new ICarriage[size()];
+        ICarriage[] iCarriages = new ICarriage[size()+1];
         try {
             iCarriages[0] = head;
         }catch (NullPointerException ex){
@@ -76,21 +80,17 @@ public class MySet implements Set<ICarriage> {
         try {
             current = head;
         }catch (NullPointerException n){
-            return ts;
+
+            return (T[]) new Object[0];
         }
 
         if (ts.length < this.size()){
-            for (int i = 0; i< ts.length; i++){
-                ts[i] = (T) current;
-                current = current.nextICariage;
-            }
-
-        }
+            ts = (T[]) new Object[this.size()];
+                    }
         for (int i = 0; i< this.size(); i++){
             ts[i] = (T) current;
             current = current.nextICariage;
         }
-        if (ts.length > this.size()){ts[size()] = null;}
         return ts;
     }
 
@@ -132,8 +132,9 @@ public class MySet implements Set<ICarriage> {
 
     @Override
     public boolean containsAll(Collection<?> collection) {
-        for (Iterator<?> i = collection.iterator(); i.hasNext();) {
-            if (!this.contains(i)){return false;}
+        Iterator<?> i = collection.iterator();
+        while (i.hasNext()){
+            if (!this.contains(i.next())){return false;}
         }
         return true;
     }
@@ -150,11 +151,11 @@ public class MySet implements Set<ICarriage> {
 
     @Override
     public boolean retainAll(Collection<?> collection) {
-        ICarriage current = head;
-        while (current.haveNext()){
+        Iterator iterator = this.iterator();
+        while (iterator.hasNext()){
+            ICarriage current = (ICarriage) iterator.next();
             if (!collection.contains(current)){
                 remove(current);
-                current=current.nextICariage;
             }
         }
         return true;
@@ -162,11 +163,12 @@ public class MySet implements Set<ICarriage> {
 
     @Override
     public boolean removeAll(Collection<?> collection) {
-        ICarriage current = head;
-        while (current.haveNext()){
-            if (collection.contains(current)){
-                remove(current);
-                current=current.nextICariage;
+        Iterator iterator = this.iterator();
+        while (iterator.hasNext()){
+            Object o = iterator.next();
+            if (collection.contains(o)){
+                remove(o);
+
             }
         }
         return true;

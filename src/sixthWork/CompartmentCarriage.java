@@ -1,6 +1,8 @@
 package sixthWork;
 
-public class CompartmentCarriage extends Carriage {
+import seventhWork.ICarriage;
+
+public class CompartmentCarriage extends ICarriage {
     CompartmentCarriage(int nummber) {
         super(3, 40, 120, nummber);
     }

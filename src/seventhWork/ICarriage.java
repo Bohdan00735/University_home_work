@@ -6,11 +6,12 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class ICarriage extends Carriage {
+public class ICarriage extends Carriage{
 ICarriage nextICariage;
 
-    ICarriage(int comfortable, int numOfSeats, int numOfLuggage, int nummber) {
+    public ICarriage(int comfortable, int numOfSeats, int numOfLuggage, int nummber) {
         super(comfortable, numOfSeats, numOfLuggage, nummber);
+
     }
 
     public void addNext(ICarriage nextICariage) {
@@ -20,10 +21,10 @@ ICarriage nextICariage;
     int size(){
     int result=1;
     try {
-        result+=nextICariage.size();
+        return result+=nextICariage.size();
     }catch (NullPointerException exeption){
-        result+=0;
-    }return result;
+        return result;
+    }
     }
 
     boolean CheakNext(Object o){
@@ -31,16 +32,16 @@ ICarriage nextICariage;
             if (nextICariage.equals(o)){
                 return true;
             }else {
-                nextICariage.CheakNext(o);
+                return nextICariage.CheakNext(o);
             }
         }catch (NullPointerException ex){
             return false;
-        }return false;
+        }
     }
 
     ICarriage[] addToArray(ICarriage[] iCarriages, int position){
         try {
-            iCarriages[position] = nextICariage;
+            iCarriages[position] = this;
             return nextICariage.addToArray(iCarriages, position+1);
         }catch (NullPointerException ex){
             System.out.println("All carriages packed");
@@ -57,10 +58,13 @@ ICarriage nextICariage;
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ICarriage iCarriage = (ICarriage) o;
-        return Objects.equals(nextICariage, iCarriage.nextICariage);
+        try {
+            if (this == (ICarriage)o){
+                return true;
+            }
+        }catch (ClassCastException c){
+
+        }return false;
     }
 
     @Override

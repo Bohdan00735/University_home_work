@@ -1,8 +1,8 @@
 package sixthWork;
 
 
-class RandomSetter {
-    Train makeNewPassengerTrain() {
+public class RandomSetter {
+    public Train makeNewPassengerTrain() {
         int numOfWagons = (int) Math.round(Math.random() * (40) + 10);
         int nummberOfTrain = (int) Math.round(Math.random() * (300) + 200);
 

@@ -1,9 +1,11 @@
 package sixthWork;
 
+import seventhWork.ICarriage;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
-class Train {
+public class Train {
     int numOfWagons;
     Carriage[] wagons;
     Tractor tractor;
@@ -12,9 +14,13 @@ class Train {
     String route;
     int spaceForWagon = 0;
 
+    public Carriage[] getWagons() {
+        return wagons;
+    }
+
     public Train(int numOfWagons, Tractor tractor, String director, int nummberOfTrain, String route) {
         this.numOfWagons = numOfWagons;
-        this.wagons = new Carriage[numOfWagons];
+        this.wagons = new ICarriage[numOfWagons];
         this.tractor = tractor;
         this.director = director;
         this.nummberOfTrain = nummberOfTrain;

@@ -1,6 +1,8 @@
 package sixthWork;
 
-public class SV extends Carriage {
+import seventhWork.ICarriage;
+
+public class SV extends ICarriage {
     public SV(int nummber) {
         super(4, 20, 80, nummber);
     }
