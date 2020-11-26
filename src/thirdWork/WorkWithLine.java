@@ -16,6 +16,8 @@ public class WorkWithLine {
 
 
 
+
+
         for (int i = 0; i < line.length(); i++){
             if (line.length()- i < lastSymbol-startSymb ){
                 break;

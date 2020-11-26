@@ -9,7 +9,7 @@ import java.util.Objects;
 public class ICarriage extends Carriage{
 ICarriage nextICariage;
 
-    public ICarriage(int comfortable, int numOfSeats, int numOfLuggage, int nummber) {
+    public ICarriage(int comfortable, int numOfSeats, int numOfLuggage, int nummber)throws MyExeption {
         super(comfortable, numOfSeats, numOfLuggage, nummber);
 
     }

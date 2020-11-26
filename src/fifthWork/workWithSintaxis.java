@@ -11,8 +11,10 @@ public class workWithSintaxis {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input your text or paragraph");
         String text = scanner.nextLine();
-        System.out.println("Input your parsing symbol");
-        String symbol = scanner.next();
+        System.out.println("Input your first parsing symbol");
+        String symbol1 = scanner.next();
+        System.out.println("Input your second parsing symbol");
+        String symbol2 = scanner.next();
 
         Text splitedText = new Text();
         String[] spl;
@@ -51,7 +53,7 @@ public class workWithSintaxis {
             splitedText.addElemenet(thiseSentence);
         }
 
-        splitedText.cutSomePartInEachSentence(symbol);
+        splitedText.cutSomePartInEachSentence(symbol1, symbol2);
         splitedText.PrintText();
     }
 }
@@ -104,9 +106,9 @@ class Text {
         return lastPosition;
     }
 
-    void cutSomePartInEachSentence(String symbol) {
+    void cutSomePartInEachSentence(String symbol1, String symbol2) {
         for (int i = 0; i < text.length; i++) {
-            this.text[i].cutFromDIapOfSymb(symbol);
+            this.text[i].cutFromDIapOfSymb(symbol1, symbol2);
         }
     }
 
@@ -170,9 +172,9 @@ class Sentense {
         this.sentense = sentense;
     }
 
-    void cutFromDIapOfSymb(String symbol) {
-        int[] start = firstIn(symbol);
-        int[] end = lastIn(symbol);
+    void cutFromDIapOfSymb(String symbol1, String symbol2) {
+        int[] start = firstIn(symbol1);
+        int[] end = lastIn(symbol2);
         if (start[0] == end[0] & start[1] == end[1]) {
             sentense[start[0]].deleteOneLetter(start[1]);
         } else if (start[0] == end[0]) {

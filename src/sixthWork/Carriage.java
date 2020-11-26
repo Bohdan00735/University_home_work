@@ -1,8 +1,11 @@
 package sixthWork;
 
 import seventhWork.ICarriage;
+import seventhWork.MyExeption;
+import seventhWork.MySet;
 
 public class Carriage implements Truck  {
+
     int comfortable;
     int numOfSeats;
     int numOfLuggage;
@@ -10,7 +13,10 @@ public class Carriage implements Truck  {
     int[] baggage;
     public  int nummber;
 
-    public Carriage(int comfortable, int numOfSeats, int numOfLuggage, int nummber) {
+    public Carriage(int comfortable, int numOfSeats, int numOfLuggage, int nummber) throws MyExeption {
+        if(comfortable<=0 | numOfSeats<=0 | numOfLuggage<=0 | nummber <= 0){
+            throw new MyExeption();
+        }
         this.comfortable = comfortable;
         this.numOfSeats = numOfSeats;
         this.numOfLuggage = numOfLuggage;

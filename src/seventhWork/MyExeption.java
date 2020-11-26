@@ -1,5 +1,5 @@
 package seventhWork;
 
 public class MyExeption extends Exception {
-    String message = "not composte type";
+    String message = "negative value of input";
 }
